@@ -21,3 +21,20 @@ exports.hasAuthorization = (req,res,next)=>{
 		});
 	}
 };
+
+exports.allUsers=(req,res)=>{
+	User.find((err,users)=>{
+		if(err){
+			return res.json({ 
+				error: err})
+		}
+
+		return res.json({users: users});
+	}).select("name email updated created");
+}
+
+exports.getUser=(req,res)=>{
+	req.profile.hashed_password=undefined;
+	req.profile.salt=undefined;
+	return res.json(req.profile);
+}
