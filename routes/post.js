@@ -6,7 +6,7 @@ const { userById } = require("../controllers/user");
 
 const router=express.Router();
 
-router.get('/', getPosts);
+router.get('/posts', getPosts);
 router.post('/post/new/:userId', requireSignin , createPost , createPostValidator);//position of createPost is imp
 router.get('/post/by/:userId', requireSignin , postsByUser); 
 router.put("/post/:postId", requireSignin, isPoster, updatePost);
